@@ -1,15 +1,14 @@
 import React, { useState } from "react";
-import styles from "./Filter.module.css";
-import Card from "../Card/Card";
+import styles from "./FilterInput.module.css";
+import Button from "../Layout/Button";
 
-const Filter = ( props ) => {
+const FilterInput = ({ props }) => {
   const [filtered, setFilter] = useState("");
 
   const filterfun = (e) => {
     const name = e.target.value;
-    setFilter(name)
-  }
-
+    setFilter(name);
+  };
 
   return (
     <div className={styles.filterWraper}>
@@ -19,10 +18,15 @@ const Filter = ( props ) => {
         value={filtered}
         onChange={filterfun}
       />
-      <button className={styles.filterBtn} onClick={() => props.filter(filtered)}>Filter</button>
-      <button className={styles.filterBtn} onClick={props.undo} >UnFilter</button>
+      <Button
+        className={styles.filterBtn}
+        style={{ margin: "10px" }}
+        onClick={() => props(filtered)}
+      >
+        Filter
+      </Button>
     </div>
   );
 };
 
-export default Filter;
+export default FilterInput;
